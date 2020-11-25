@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dostojic.climbers.repository;
+package com.dostojic.climbers.domain;
+
+import java.util.List;
 
 /**
  *
  * @author planina
  */
-public class ClimberRepository {
-    
+public interface ClimberRepository {
+    List<Climber> getAll();
 }

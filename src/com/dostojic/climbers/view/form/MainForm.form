@@ -643,12 +643,15 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="panelDashboardView">
+    <Container class="javax.swing.JPanel" name="panelMainContent">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f2" green="80" red="49" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.dostojic.climbers.view.form.PanelMainContent()"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>

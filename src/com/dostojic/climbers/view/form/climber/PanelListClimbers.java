@@ -6,9 +6,13 @@
 package com.dostojic.climbers.view.form.climber;
 
 import com.dostojic.climbers.domain.Climber;
-import com.dostojic.climbers.view.form.FormStyleHelper;
+import com.dostojic.climbers.view.form.util.FormStyleHelper;
 import com.dostojic.climbers.view.model.TableModelClimberList;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -35,21 +39,21 @@ public class PanelListClimbers extends javax.swing.JPanel {
 
         panelContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tableClimberList = new javax.swing.JTable();
+        buttonDetails = new javax.swing.JButton();
+        buttonAdd = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
 
         setOpaque(false);
 
-        jTable1.setModel(new TableModelClimberList(new ArrayList<Climber>()));
-        jScrollPane1.setViewportView(jTable1);
+        tableClimberList.setModel(new TableModelClimberList(new ArrayList<Climber>()));
+        jScrollPane1.setViewportView(tableClimberList);
 
-        jButton1.setText("Details");
+        buttonDetails.setText("Details");
 
-        jButton2.setText("Add");
+        buttonAdd.setText("Add");
 
-        jButton3.setText("Delete");
+        buttonDelete.setText("Delete");
 
         javax.swing.GroupLayout panelContentLayout = new javax.swing.GroupLayout(panelContent);
         panelContent.setLayout(panelContentLayout);
@@ -60,9 +64,9 @@ public class PanelListClimbers extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(buttonDetails)
+                    .addComponent(buttonAdd)
+                    .addComponent(buttonDelete))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         panelContentLayout.setVerticalGroup(
@@ -74,11 +78,11 @@ public class PanelListClimbers extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelContentLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jButton1)
+                        .addComponent(buttonDetails)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(buttonAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(buttonDelete)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -100,13 +104,44 @@ public class PanelListClimbers extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getButtonAdd() {
+        return buttonAdd;
+    }
+
+    public JButton getButtonDelete() {
+        return buttonDelete;
+    }
+
+    public JButton getButtonDetails() {
+        return buttonDetails;
+    }
+
+    public JPanel getPanelContent() {
+        return panelContent;
+    }
+
+    public JTable getTableClimberList() {
+        return tableClimberList;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton buttonAdd;
+    private javax.swing.JButton buttonDelete;
+    private javax.swing.JButton buttonDetails;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelContent;
+    private javax.swing.JTable tableClimberList;
     // End of variables declaration//GEN-END:variables
+
+    public void climberDetailsAddActionListener(ActionListener actionListener) {
+        buttonDetails.addActionListener(actionListener);
+    }
+
+    public void newClimberAddActionListener(ActionListener actionListener) {
+        buttonAdd.addActionListener(actionListener);
+    }
+
+    public void deleteClimberAddActionListener(ActionListener actionListener) {
+        buttonDelete.addActionListener(actionListener);
+    }
 }

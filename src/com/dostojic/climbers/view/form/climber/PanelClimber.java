@@ -5,8 +5,12 @@
  */
 package com.dostojic.climbers.view.form.climber;
 
-import com.dostojic.climbers.view.form.FormStyleHelper;
+import com.dostojic.climbers.view.form.util.FormStyleHelper;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -33,16 +37,17 @@ public class PanelClimber extends javax.swing.JPanel {
 
         panelContent = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textFirstName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textLastName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        textYearOfBirth = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
+        buttonEdit = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
+        buttonEnableChanges = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(73, 128, 242));
         setOpaque(false);
@@ -55,37 +60,41 @@ public class PanelClimber extends javax.swing.JPanel {
 
         jPanel1.setOpaque(false);
 
-        jButton1.setText("Save");
+        buttonSave.setText("Save");
 
-        jButton2.setText("Edit");
+        buttonEdit.setText("Edit");
 
-        jButton3.setText("Cancel");
+        buttonCancel.setText("Cancel");
 
-        jButton4.setText("Delete");
+        buttonDelete.setText("Delete");
+
+        buttonEnableChanges.setText("Enable chages");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(1, 1, 1)
-                .addComponent(jButton4)
+                .addComponent(buttonDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(buttonEdit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonCancel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addComponent(buttonEnableChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSave))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(buttonSave)
+                    .addComponent(buttonEdit)
+                    .addComponent(buttonCancel)
+                    .addComponent(buttonDelete)
+                    .addComponent(buttonEnableChanges))
                 .addContainerGap())
         );
 
@@ -94,23 +103,20 @@ public class PanelClimber extends javax.swing.JPanel {
         panelContentLayout.setHorizontalGroup(
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelContentLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentLayout.createSequentialGroup()
+                    .addGroup(panelContentLayout.createSequentialGroup()
+                        .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(271, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textYearOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(textLastName)
+                            .addComponent(textFirstName))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelContentLayout.setVerticalGroup(
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,15 +124,15 @@ public class PanelClimber extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textYearOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -138,8 +144,8 @@ public class PanelClimber extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,19 +156,77 @@ public class PanelClimber extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getButtonCancel() {
+        return buttonCancel;
+    }
+
+    public JButton getButtonDelete() {
+        return buttonDelete;
+    }
+
+    public JButton getButtonEdit() {
+        return buttonEdit;
+    }
+
+    public JButton getButtonSave() {
+        return buttonSave;
+    }
+
+    public JButton getButtonEnableChanges() {
+        return buttonEnableChanges;
+    }
+
+    public JPanel getPanelContent() {
+        return panelContent;
+    }
+
+    public JTextField getTextFirstName() {
+        return textFirstName;
+    }
+
+    public JTextField getTextLastName() {
+        return textLastName;
+    }
+
+    public JTextField getTextYearOfBirth() {
+        return textYearOfBirth;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonDelete;
+    private javax.swing.JButton buttonEdit;
+    private javax.swing.JButton buttonEnableChanges;
+    private javax.swing.JButton buttonSave;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelContent;
+    private javax.swing.JTextField textFirstName;
+    private javax.swing.JTextField textLastName;
+    private javax.swing.JTextField textYearOfBirth;
     // End of variables declaration//GEN-END:variables
+
+    public void buttonCancelAddActionListener(ActionListener actionListener) {
+        buttonCancel.addActionListener(actionListener);
+    }
+    
+    public void buttonDeleteAddActionListener(ActionListener actionListener) {
+        buttonDelete.addActionListener(actionListener);
+    }
+    
+    public void buttonSaveAddActionListener(ActionListener actionListener) {
+        buttonCancel.addActionListener(actionListener);
+    }
+    
+    public void buttonEnableChangesAddActionListener(ActionListener actionListener) {
+        buttonEnableChanges.addActionListener(actionListener);
+    }
+    
+    public void buttonEditAddActionListener(ActionListener actionListener) {
+        buttonEdit.addActionListener(actionListener);
+    }
+    
 }

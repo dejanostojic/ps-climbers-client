@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dostojic.climbers.view.form;
+package com.dostojic.climbers.view.form.util;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -62,14 +62,14 @@ public class FormStyleHelper {
             Component component = evt.getComponent();
             exitColor = component.getBackground(); // set exit color back to initial
             component.setBackground(enterColor);
-            System.out.println("mouse enter: " + component.getName());
+//            System.out.println("mouse enter: " + component.getName());
         }
 
         @Override
         public void mouseExited(MouseEvent evt) {
             Component component = evt.getComponent();
             component.setBackground(exitColor);
-            System.out.println("mouse exit: " + component.getName());
+//            System.out.println("mouse exit: " + component.getName());
 
         }
     }

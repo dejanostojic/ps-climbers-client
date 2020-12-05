@@ -5,10 +5,18 @@
  */
 package com.dostojic.climbers.view.form;
 
+import com.dostojic.climbers.view.form.util.FrameDragListener;
+import com.dostojic.climbers.view.form.util.FormStyleHelper;
 import com.dostojic.climbers.view.form.climber.PanelClimber;
 import com.dostojic.climbers.view.form.climber.PanelListClimbers;
+import com.dostojic.climbers.view.form.util.FormActionHelper;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,14 +32,12 @@ import jiconfont.swing.IconFontSwing;
  */
 public class MainForm extends javax.swing.JFrame {
 
-    private JPanel dashboardPanelHolder;
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         this.setUndecorated(true);
         initComponents();
-        this.dashboardPanelHolder = new PanelDashboardImage();
         prepareForm();
     }
 
@@ -79,7 +85,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         labelClimbersText5 = new javax.swing.JLabel();
         labelClimbersIcon5 = new javax.swing.JLabel();
-        panelDashboardView = new javax.swing.JPanel();
+        panelMainContent = new com.dostojic.climbers.view.form.PanelMainContent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1600, 900));
@@ -286,41 +292,40 @@ public class MainForm extends javax.swing.JFrame {
 
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
 
-        panelDashboardView.setBackground(new java.awt.Color(73, 128, 242));
-        panelDashboardView.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(panelDashboardView, java.awt.BorderLayout.CENTER);
+        panelMainContent.setBackground(new java.awt.Color(73, 128, 242));
+        panelMainContent.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(panelMainContent, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelClimbersNewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelClimbersNewMouseClicked
-        System.out.println("adding panel climber!");
-        dashboardPanelHolder.removeAll();
-        dashboardPanelHolder.revalidate();
-        dashboardPanelHolder.repaint();
-        PanelClimber panelClimber = new PanelClimber();
-        
-        dashboardPanelHolder.add(panelClimber);
-        panelClimber.setVisible(true);
-        dashboardPanelHolder.setVisible(true);
-        dashboardPanelHolder.repaint();
+//        System.out.println("adding panel climber!");
+//        dashboardPanelHolder.removeAll();
+//        dashboardPanelHolder.revalidate();
+//        dashboardPanelHolder.repaint();
+//        PanelClimber panelClimber = new PanelClimber();
+//
+//        dashboardPanelHolder.add(panelClimber);
+//        panelClimber.setVisible(true);
+//        dashboardPanelHolder.setVisible(true);
+//        dashboardPanelHolder.repaint();
 
-        
 
     }//GEN-LAST:event_panelClimbersNewMouseClicked
 
     private void panelClimbersSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelClimbersSearchMouseClicked
-         System.out.println("adding panel search climbers!");
-         
-        dashboardPanelHolder.removeAll();
-        dashboardPanelHolder.revalidate();
-        dashboardPanelHolder.repaint();
+        System.out.println("adding panel search climbers!");
+
+        panelMainContent.removeAll();
+        panelMainContent.revalidate();
+        panelMainContent.repaint();
         PanelListClimbers panel = new PanelListClimbers();
-        
-        dashboardPanelHolder.add(panel);
+
+        panelMainContent.add(panel);
         panel.setVisible(true);
-        dashboardPanelHolder.setVisible(true);
-        dashboardPanelHolder.repaint();
+        panelMainContent.setVisible(true);
+        panelMainContent.repaint();
     }//GEN-LAST:event_panelClimbersSearchMouseClicked
 
 
@@ -353,9 +358,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel panelClimbersMain;
     private javax.swing.JPanel panelClimbersNew;
     private javax.swing.JPanel panelClimbersSearch;
-    private javax.swing.JPanel panelDashboardView;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelIconMinMaxClose;
+    private javax.swing.JPanel panelMainContent;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelMenuClimbers;
     private javax.swing.JPanel panelMenuCompetition;
@@ -363,14 +368,26 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel panelMenuIcon;
     // End of variables declaration//GEN-END:variables
 
+    public void menuNewClimberAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelClimbersNew, handler);
+    }
+
+    public void menuSearchClimberAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelClimbersSearch, handler);
+    }
+    public PanelMainContent getPanelMainContent() {
+        return (PanelMainContent) panelMainContent;
+    }
+
     private void prepareForm() {
-        panelDashboardView.add(dashboardPanelHolder);
+        
+        
         labelClose.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.CLOSE, 50, new Color(255, 255, 255)));
         labelMaximize.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.FULLSCREEN, 50, new Color(255, 255, 255)));
         labelMinimize.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.REMOVE, 50, new Color(255, 255, 255)));
         labelBurger.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.MENU, 50, new Color(255, 255, 255)));
         labelSettings.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SETTINGS, 50, new Color(255, 255, 255)));
-        
+
         FormStyleHelper.styleButtonComponents(Arrays.asList(labelClose, panelButtonClose, labelMaximize, labelMinimize), FormStyleHelper.TITLE_BAR_BUTTONS_ENTER);
         // enter, click, exit
 //        mouseEnter(labelClose, panelButtonClose);
@@ -401,9 +418,9 @@ public class MainForm extends javax.swing.JFrame {
                 jPanel9
         ),
                 FormStyleHelper.MENU_ENTER_COLOR);
-        
+
         FrameDragListener.addDragCapability(panelHeader);
-        
+
         labelMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -411,69 +428,68 @@ public class MainForm extends javax.swing.JFrame {
                 topFrame.setExtendedState(JFrame.ICONIFIED);
             }
         });
-        
+
 //        panelDashboardView.add(new PanelDashboardImage());
-        
     }
-    
+
     private void mouseEnter(JLabel labelButton, JPanel panelButton) {
-        
+
         labelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 changecolor(panelButton, new Color(25, 29, 74));
-                
+
             }
         });
-        
+
     }
-    
+
     private void mouseExited(JLabel labelButton, JPanel panelButton) {
-        
+
         labelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 changecolor(panelButton, new Color(5, 10, 46));
-                
+
             }
         });
-        
+
     }
 
     // todo refactor
     private void closeButtonClicked(JLabel labelButton) {
-        
+
         labelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.exit(0);
             }
         });
-        
+
     }
 
     // todo refactor
     private void maxButtonClicked(JLabel labelButton) {
-        
+
         labelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                
+
                 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(evt.getComponent());
                 if (topFrame.getExtendedState() != JFrame.MAXIMIZED_BOTH) {
                     topFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     labelButton.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.FULLSCREEN_EXIT, 50, new Color(255, 255, 255)));
-                    
+
                 } else {
                     topFrame.setExtendedState(JFrame.NORMAL);
                     labelButton.setIcon(IconFontSwing.buildIcon(GoogleMaterialDesignIcons.FULLSCREEN, 50, new Color(255, 255, 255)));
-                    
+
                 }
             }
         });
-        
+
     }
-    
+
     private void changecolor(JPanel hover, Color rand) {
         hover.setBackground(rand);
     }

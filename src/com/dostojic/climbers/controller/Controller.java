@@ -6,6 +6,7 @@
 package com.dostojic.climbers.controller;
 
 import com.dostojic.climbers.LoginException;
+import com.dostojic.climbers.domain.Climber;
 import com.dostojic.climbers.domain.ClimberRepository;
 import com.dostojic.climbers.domain.CompetitionRepository;
 import com.dostojic.climbers.domain.User;
@@ -14,6 +15,7 @@ import com.dostojic.climbers.repository.ClimberRepositoryInMemoryImpl;
 import com.dostojic.climbers.repository.CompetitionRepositoryInMemoryImpl;
 import com.dostojic.climbers.repository.UserRepositoryInMemoryImpl;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -41,7 +43,7 @@ public class Controller {
     }
 
 
-    public User login(String username, String password) throws Exception {
+    public User login(String username, String password) throws LoginException {
         //        new LoginCredentials(usernameField.getText(), String.valueOf(passwordField.getPassword()));
 
        List<User> users = userRepository.getAll();
@@ -57,6 +59,21 @@ public class Controller {
         }
         
         throw new LoginException("Inccorect username");
+    }
+    
+    public List<Climber> getAllClimbers(){
+        return climberRepository.getAll();
+    }
+    
+    public Optional<Climber> findClimberById(Integer id){
+        return climberRepository.getAll()
+                .stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
+    }
+    
+    public void delteClimberById(Integer id){
+        climberRepository.deleteById(id);
     }
     
 }

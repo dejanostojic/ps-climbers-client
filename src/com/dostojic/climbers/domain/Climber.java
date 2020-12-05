@@ -13,8 +13,6 @@ import java.util.Objects;
  */
 public class Climber {
     private Integer id;
-
-
     private String firstName;
     private String lastName;
     private Integer yearOfBirth;
@@ -30,6 +28,14 @@ public class Climber {
     
     public Climber(Integer id, String firstName, String lastName, Integer yearOfBirth) {
         this(firstName, lastName, yearOfBirth);
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
     

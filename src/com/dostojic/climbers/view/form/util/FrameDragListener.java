@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dostojic.climbers.view.form;
+package com.dostojic.climbers.view.form.util;
 
 import java.awt.Point;
 import java.awt.event.MouseAdapter;

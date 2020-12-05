@@ -5,6 +5,7 @@
  */
 package com.dostojic.climbers.view.form;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,19 +18,19 @@ import javax.imageio.ImageIO;
  *
  * @author planina
  */
-public class PanelDashboardImage extends javax.swing.JPanel {
+public class PanelMainContent extends javax.swing.JPanel {
 
     private BufferedImage image;
 
     /**
-     * Creates new form DashboardPanel
+     * Creates new form PanelContentImage
      */
-    public PanelDashboardImage() {
+    public PanelMainContent() {
         initComponents();
         try {
             image = ImageIO.read(new File("src/resources/bgd.jpg"));
         } catch (IOException ex) {
-            Logger.getLogger(PanelDashboardImage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PanelMainContent.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -45,7 +46,7 @@ public class PanelDashboardImage extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
-
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

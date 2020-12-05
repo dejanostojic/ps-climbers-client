@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dostojic.climbers.domain;
-
-import java.util.List;
+package com.dostojic.climbers.view.form.util;
 
 /**
  *
  * @author planina
  */
-public interface ClimberRepository {
-    List<Climber> getAll();
-    void deleteById(Integer id);
+public enum FormMode {
+    FORM_ADD, FORM_EDIT, FORM_VIEW
 }
+

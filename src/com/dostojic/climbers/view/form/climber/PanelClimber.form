@@ -24,8 +24,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelContent" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelContent" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,28 +46,24 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="218" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="218" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField3" min="-2" pref="218" max="-2" attributes="0"/>
+                          <EmptySpace min="33" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="textYearOfBirth" pref="260" max="32767" attributes="0"/>
+                              <Component id="textLastName" max="32767" attributes="0"/>
+                              <Component id="textFirstName" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="271" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -77,17 +73,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textYearOfBirth" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -102,21 +98,21 @@
             <Property name="text" type="java.lang.String" value="First name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="textFirstName">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Last name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="textLastName">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Year of birth"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="textYearOfBirth">
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
@@ -127,14 +123,15 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonEdit" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="buttonCancel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonEnableChanges" min="-2" pref="152" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonSave" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -143,10 +140,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonEnableChanges" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -154,24 +152,29 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="buttonSave">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="buttonEdit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="buttonCancel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="buttonDelete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="buttonEnableChanges">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enable chages"/>
               </Properties>
             </Component>
           </SubComponents>

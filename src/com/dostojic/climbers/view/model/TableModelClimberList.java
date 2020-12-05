@@ -16,9 +16,8 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelClimberList extends AbstractTableModel {
 
     List<Climber> data;
-    private String[] columnNames = new String[]{"Fist Name", "Last name", "Year of birth"};
-    private Class[] columnClasses = new Class[]{String.class, String.class, Integer.class};
-
+    private final String[] columnNames = new String[]{"Fist Name", "Last name", "Year of birth"};
+    
     public TableModelClimberList(List<Climber> data) {
         if (data == null) {
             throw new RuntimeException("The data was not provided for model. This is not expected!.");
@@ -42,11 +41,6 @@ public class TableModelClimberList extends AbstractTableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        return columnClasses[columnIndex];
-    }
-
-    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Climber row = data.get(rowIndex);
         switch (columnIndex) {
@@ -59,6 +53,16 @@ public class TableModelClimberList extends AbstractTableModel {
             default:
                 return "n/a";
         }
+    }
+    
+    public void addClimber(Climber climber) {
+        data.add(climber);
+        //fireTableDataChanged();
+        fireTableRowsInserted(data.size()-1, data.size()-1);
+    }
+
+    public Climber getClimberAt(int row) {
+        return data.get(row);
     }
 
 }

@@ -9,7 +9,7 @@ package com.dostojic.climbers;
  *
  * @author planina
  */
-public class LoginException extends Exception{
+public class LoginException extends Exception {
 
     public LoginException() {
     }
@@ -29,5 +29,5 @@ public class LoginException extends Exception{
     public LoginException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
-    
+
 }

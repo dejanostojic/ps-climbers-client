@@ -9,6 +9,7 @@ import com.dostojic.climbers.domain.Climber;
 import com.dostojic.climbers.domain.ClimberRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -31,6 +32,14 @@ public class ClimberRepositoryInMemoryImpl implements ClimberRepository {
     @Override
     public List<Climber> getAll() {
         return climbers;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        Optional<Climber> climber = climbers.stream().filter(c -> c.getId().equals(id)).findFirst();
+        if (climber.isPresent()){
+            climbers.remove(climber.get());
+        }
     }
 
 }

@@ -6,10 +6,15 @@
 package com.dostojic.climbers.view.form;
 
 import com.dostojic.climbers.controller.Controller;
-import com.dostojic.climbers.view.controller.login.LoginController;
+import com.dostojic.climbers.view.controller.LoginController;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 
@@ -18,15 +23,14 @@ import jiconfont.swing.IconFontSwing;
  * @author planina
  */
 public class FormLogin extends javax.swing.JFrame {
-
-    private LoginController viewController;
     
     /**
      * Creates new form FormLogin
      */
     public FormLogin() {
         initComponents();
-        this.viewController = new LoginController();
+        textUsername.setText("admin");
+        pfPassword.setText("admin");
     }
 
     /**
@@ -43,6 +47,8 @@ public class FormLogin extends javax.swing.JFrame {
         textUsername = new javax.swing.JTextField();
         pfPassword = new javax.swing.JPasswordField();
         buttonLogin = new javax.swing.JButton();
+        labelUsernameError = new javax.swing.JLabel();
+        labelPassError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,18 +56,7 @@ public class FormLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
-        textUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textUsernameActionPerformed(evt);
-            }
-        });
-
         buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLoginActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,15 +67,16 @@ public class FormLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textUsername)
-                    .addComponent(pfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
-                .addComponent(buttonLogin)
-                .addGap(150, 150, 150))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPassError)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(buttonLogin)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(labelUsernameError)
+                            .addComponent(pfPassword))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,33 +85,57 @@ public class FormLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(textUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelUsernameError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelPassError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLogin)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textUsernameActionPerformed
 
-    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        viewController.login(textUsername, pfPassword, this);
-    }//GEN-LAST:event_buttonLoginActionPerformed
+    public void lcoginAddActionListener(ActionListener actionListener) {
+        buttonLogin.addActionListener(actionListener);
+    }
 
+    public JButton getButtonLogin() {
+        return buttonLogin;
+    }
 
+    public JPasswordField getPfPassword() {
+        return pfPassword;
+    }
 
+    public JTextField getTextUsername() {
+        return textUsername;
+    }
+
+    public JLabel getLabelPassError() {
+        return labelPassError;
+    }
+
+    public JLabel getLabelUsernameError() {
+        return labelUsernameError;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel labelPassError;
+    private javax.swing.JLabel labelUsernameError;
     private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
+
+    public void loginAddActionListener(ActionListener actionListener) {
+        buttonLogin.addActionListener(actionListener);
+    }
 }

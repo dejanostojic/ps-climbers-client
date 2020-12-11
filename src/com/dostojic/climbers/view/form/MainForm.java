@@ -7,22 +7,16 @@ package com.dostojic.climbers.view.form;
 
 import com.dostojic.climbers.view.form.util.FrameDragListener;
 import com.dostojic.climbers.view.form.util.FormStyleHelper;
-import com.dostojic.climbers.view.form.climber.PanelClimber;
 import com.dostojic.climbers.view.form.climber.PanelListClimbers;
 import com.dostojic.climbers.view.form.util.FormActionHelper;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.icons.google_material_design_icons.GoogleMaterialDesignIcons;
 import jiconfont.swing.IconFontSwing;
 

@@ -5,18 +5,19 @@
  */
 package com.dostojic.climbers.view.controller;
 
-import com.dostojic.climbers.controller.Controller;
+import com.dostojic.climbers.communication.Communication;
 import com.dostojic.climbers.domain.User;
-import com.dostojic.climbers.domain.valueobject.LoginCredentials;
+import com.dostojic.climbers.exception.LoginException;
 import com.dostojic.climbers.view.constant.Constants;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
 import com.dostojic.climbers.view.form.FormLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  *
@@ -53,7 +54,7 @@ public class LoginController {
 
                     validateForm(username, password);
 
-                    User user = Controller.getInstance().login(username, password);
+                    User user = Communication.getInstance().login(username, password);
                     JOptionPane.showMessageDialog(
                             formLogin,
                             "Welcome " + user.getFirstName() + ", " + user.getLastName(),
@@ -62,9 +63,17 @@ public class LoginController {
                     formLogin.dispose();
                     Session.getInstance().addParam(Constants.CURRENT_USER, user);
                     MainCoordinator.getInstance().openMainForm();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (LoginException e) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.INFO, e.getMessage());
                     JOptionPane.showMessageDialog(formLogin, e.getMessage(), "Login error", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException ex) {
+                    // TODO: THIS WILL BE PRESENT ON ALL Communication calls, should i handle in  Communication class maybe, or declare in Communication?!
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(formLogin, "Error connecting to server", "Connection failed", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(formLogin, "Unexpected error. Send email to our support team!", "Unexpected error", JOptionPane.ERROR_MESSAGE);
+
                 }
             }
             

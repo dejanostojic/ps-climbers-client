@@ -5,25 +5,18 @@
  */
 package com.dostojic.climbers.view.form;
 
-import com.dostojic.climbers.controller.Controller;
-import com.dostojic.climbers.view.controller.LoginController;
-import java.awt.Color;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import jiconfont.icons.font_awesome.FontAwesome;
-import jiconfont.swing.IconFontSwing;
 
 /**
  *
  * @author planina
  */
 public class FormLogin extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form FormLogin
      */
@@ -100,7 +93,6 @@ public class FormLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
     public void lcoginAddActionListener(ActionListener actionListener) {
         buttonLogin.addActionListener(actionListener);

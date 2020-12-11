@@ -6,7 +6,6 @@
 package com.dostojic.climbers.view.form.climber;
 
 import com.dostojic.climbers.view.form.util.FormStyleHelper;
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;

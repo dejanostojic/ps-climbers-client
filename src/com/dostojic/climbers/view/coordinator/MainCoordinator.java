@@ -5,7 +5,6 @@
  */
 package com.dostojic.climbers.view.coordinator;
 
-import com.dostojic.climbers.view.constant.Constants;
 import com.dostojic.climbers.view.controller.ClimberController;
 import com.dostojic.climbers.view.controller.ClimberListController;
 import com.dostojic.climbers.view.controller.LoginController;

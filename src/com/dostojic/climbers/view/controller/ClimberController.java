@@ -5,7 +5,7 @@
  */
 package com.dostojic.climbers.view.controller;
 
-import com.dostojic.climbers.controller.Controller;
+import com.dostojic.climbers.communication.Communication;
 import com.dostojic.climbers.domain.Climber;
 import static com.dostojic.climbers.view.constant.Constants.FORM_CLIMBER;
 import static com.dostojic.climbers.view.constant.Constants.SELECTED_CLIMBER_ID;
@@ -17,6 +17,8 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,9 +36,15 @@ public class ClimberController {
     }
 
     public void openForm(FormMode formMode) {
-        prepareView(formMode);
-        System.out.println("climber controller open ask main coordinator to set main content!");
-        MainCoordinator.getInstance().setMainContent(panelClimber, FORM_CLIMBER);
+        try {
+            prepareView(formMode);
+            System.out.println("climber controller open ask main coordinator to set main content!");
+            MainCoordinator.getInstance().setMainContent(panelClimber, FORM_CLIMBER);
+        } catch (Exception ex) {
+            Logger.getLogger(ClimberController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(panelClimber, ex.getMessage(), "Error opening form.", JOptionPane.ERROR_MESSAGE);
+
+        }
     }
 
     private void addActionListeners() {
@@ -68,9 +76,15 @@ public class ClimberController {
                 String deleteQuestion = "Are you sure you want to delete climber: " + climber.getFirstName() + " " + climber.getLastName();
                 int showConfirmDialog = JOptionPane.showConfirmDialog(panelClimber, deleteQuestion, "Confirm delete", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (JOptionPane.YES_OPTION == showConfirmDialog) {
-                    Controller.getInstance().delteClimberById(climber.getId());
-                    JOptionPane.showMessageDialog(panelClimber, "Climber " + climber.getFirstName() + " " + climber.getLastName() + " deleted!", "Deleted climber", JOptionPane.INFORMATION_MESSAGE);
-                    MainCoordinator.getInstance().openPreviousForm();
+                    try {
+                        Communication.getInstance().delteClimberById(climber.getId());
+                        JOptionPane.showMessageDialog(panelClimber, "Climber " + climber.getFirstName() + " " + climber.getLastName() + " deleted!", "Deleted climber", JOptionPane.INFORMATION_MESSAGE);
+                        MainCoordinator.getInstance().openPreviousForm();
+                    } catch (Exception ex) {
+                        Logger.getLogger(ClimberController.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(panelClimber, ex.getMessage(), "Error deleting climber.", JOptionPane.ERROR_MESSAGE);
+
+                    }
                 }
 
             }
@@ -78,7 +92,7 @@ public class ClimberController {
 
     }
 
-    private void prepareView(FormMode formMode) {
+    private void prepareView(FormMode formMode) throws Exception {
         System.out.println("preparing view for climber : " + formMode);
 
         setupComponents(formMode);
@@ -126,14 +140,9 @@ public class ClimberController {
         panelClimber.getTextYearOfBirth().setText(String.valueOf(climber.getYearOfBirth()));
     }
 
-    private Climber getClimberFromParam() {
+    private Climber getClimberFromParam() throws Exception {
         Integer climberId = (Integer) Session.getInstance().getParam(SELECTED_CLIMBER_ID);
-        Optional<Climber> climber = Controller.getInstance().findClimberById(climberId);
-        if (climber.isPresent()) {
-            return climber.get();
-        } else {
-            throw new RuntimeException("Could not load climber!"); // TODO: Throw proper business exception and handle!
-        }
+        return Communication.getInstance().findClimberById(climberId);
     }
 
     private void setEnabledInputFields(boolean enabled) {

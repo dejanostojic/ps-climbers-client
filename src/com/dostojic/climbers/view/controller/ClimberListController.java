@@ -5,7 +5,7 @@
  */
 package com.dostojic.climbers.view.controller;
 
-import com.dostojic.climbers.controller.Controller;
+import com.dostojic.climbers.communication.Communication;
 import com.dostojic.climbers.domain.Climber;
 import com.dostojic.climbers.view.constant.Constants;
 import static com.dostojic.climbers.view.constant.Constants.LIST_CLIMBER;
@@ -17,6 +17,8 @@ import com.dostojic.climbers.view.form.util.FormMode;
 import com.dostojic.climbers.view.model.TableModelClimberList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -34,9 +36,16 @@ public class ClimberListController {
     }
 
     public void openForm() {
-        prepareView();
-        panelListClimbers.setVisible(true);
-        MainCoordinator.getInstance().setMainContent(panelListClimbers, LIST_CLIMBER);
+        try {
+            prepareView();
+            panelListClimbers.setVisible(true);
+            MainCoordinator.getInstance().setMainContent(panelListClimbers, LIST_CLIMBER);
+        } catch (Exception ex) {
+            Logger.getLogger(ClimberListController.class.getName()).log(Level.SEVERE, null, ex);
+            
+            JOptionPane.showMessageDialog(panelListClimbers, ex.getMessage(), "Error opening climber list form", JOptionPane.ERROR_MESSAGE);
+
+        }
     }
 
     private void addActionListeners() {
@@ -84,8 +93,20 @@ public class ClimberListController {
                     String deleteQuestion = "Are you sure you want to delete climber: " + climber.getFirstName() + " " + climber.getLastName();
                     int showConfirmDialog = JOptionPane.showConfirmDialog(panelListClimbers, deleteQuestion, "Confirm delete", JOptionPane.YES_NO_CANCEL_OPTION);
                     if (JOptionPane.YES_OPTION == showConfirmDialog) {
-                        Controller.getInstance().delteClimberById(climber.getId());
-                        prepareView();
+                        try {
+                            Communication.getInstance().delteClimberById(climber.getId());
+                        } catch (Exception ex) {
+                            Logger.getLogger(ClimberListController.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(panelListClimbers, "Error deleting climber", "Delete error", JOptionPane.ERROR_MESSAGE);
+
+                        }
+                        try {
+                            prepareView();
+                        } catch (Exception ex) {
+                            Logger.getLogger(ClimberListController.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(panelListClimbers, ex.getMessage(), "Error refreshing table climbers.", JOptionPane.ERROR_MESSAGE);
+
+                        }
                     }
 
                 } else {
@@ -96,9 +117,9 @@ public class ClimberListController {
         });
     }
 
-    private void prepareView() {
+    private void prepareView() throws Exception {
         JTable table = panelListClimbers.getTableClimberList();
-        table.setModel(new TableModelClimberList(Controller.getInstance().getAllClimbers()));
+        table.setModel(new TableModelClimberList(Communication.getInstance().getAllClimbers()));
     }
 
 }

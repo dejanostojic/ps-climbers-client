@@ -5,17 +5,19 @@
  */
 package com.dostojic.climbers.communication;
 
-import com.dostojic.climbers.communication.Operation;
-import com.dostojic.climbers.communication.Receiver;
-import com.dostojic.climbers.communication.Request;
-import com.dostojic.climbers.communication.Response;
-import com.dostojic.climbers.communication.Sender;
-import com.dostojic.climbers.domain.Climber;
-import com.dostojic.climbers.domain.User;
-import com.dostojic.climbers.exception.LoginException;
-import java.lang.reflect.Type;
+import com.dostojic.climbers.common.communication.Operation;
+import com.dostojic.climbers.common.communication.Receiver;
+import com.dostojic.climbers.common.communication.Request;
+import com.dostojic.climbers.common.communication.Response;
+import com.dostojic.climbers.common.communication.Sender;
+import com.dostojic.climbers.common.dto.ClimberDto;
+import com.dostojic.climbers.common.dto.LoginCredentialsDto;
+import com.dostojic.climbers.common.dto.UserDto;
+import com.dostojic.climbers.view.model.Climber;
+import com.dostojic.climbers.view.model.User;
+import com.dostojic.climbers.view.model.mapper.ClimberMapper;
+import com.dostojic.climbers.view.model.mapper.UserMapper;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,26 +46,28 @@ public class Communication {
     }
 
     public User login(String username, String password) throws Exception {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        return new GeneralCommunication<User>(){}
-                .makeDataRequest(Operation.LOGIN, user);
+        LoginCredentialsDto loginCredentials = new LoginCredentialsDto(username, password);
+        UserDto resp = new GeneralCommunication<UserDto>(){}
+                .makeDataRequest(Operation.LOGIN, loginCredentials);
+        return UserMapper.INSTANCE.fromDto(resp);
     }
 
     public List<Climber> getAllClimbers() throws Exception {
-        return new GeneralCommunication<List<Climber>>() {}
+        List<ClimberDto> climberDtoList = new GeneralCommunication<List<ClimberDto>>() {}
                 .makeDataRequest(Operation.GET_ALL_CLIMBERS);
+        return ClimberMapper.INSTANCE.fromDto(climberDtoList);
     }
 
     public Climber findClimberById(Integer id) throws Exception {
-        return new GeneralCommunication<Climber>() {}
+        ClimberDto climberDto = new GeneralCommunication<ClimberDto>() {}
                 .makeDataRequest(Operation.FIND_CLIMBER, id);
+        return ClimberMapper.INSTANCE.fromDto(climberDto);
+                
     }
 
     public void delteClimberById(Integer id) throws Exception {
-        new GeneralCommunication<Optional<Climber>>() {}
-                .makeDataRequest(Operation.DELETE_CLIMBER, id);
+        new GeneralCommunication() {}
+                .makeVoidRequest(Operation.DELETE_CLIMBER, id);
     }
 
     /**

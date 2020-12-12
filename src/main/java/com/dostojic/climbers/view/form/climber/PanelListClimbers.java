@@ -5,8 +5,8 @@
  */
 package com.dostojic.climbers.view.form.climber;
 
-import com.dostojic.climbers.domain.Climber;
 import com.dostojic.climbers.view.form.util.FormStyleHelper;
+import com.dostojic.climbers.view.model.Climber;
 import com.dostojic.climbers.view.model.TableModelClimberList;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

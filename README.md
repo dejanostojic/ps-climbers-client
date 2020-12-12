@@ -1,4 +1,4 @@
-# ps-climbers-server
+# ps-climbers-client
 Client java swing application for software system for supporting climbing competition.
 
 ## How to run

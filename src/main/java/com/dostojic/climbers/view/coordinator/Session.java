@@ -5,10 +5,8 @@
  */
 package com.dostojic.climbers.view.coordinator;
 
-import com.dostojic.climbers.domain.User;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  *

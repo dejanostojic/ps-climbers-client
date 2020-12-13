@@ -5,7 +5,6 @@
  */
 package com.dostojic.climbers.view.model;
 
-import com.dostojic.climbers.domain.Climber;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

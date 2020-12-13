@@ -27,7 +27,7 @@ public class PanelMainContent extends javax.swing.JPanel {
     public PanelMainContent() {
         initComponents();
         try {
-            image = ImageIO.read(new File("src/resources/bgd.jpg"));
+            image = ImageIO.read(new File("src/main/resources/bgd.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(PanelMainContent.class.getName()).log(Level.SEVERE, null, ex);
         }

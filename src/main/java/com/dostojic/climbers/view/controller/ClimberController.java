@@ -6,7 +6,7 @@
 package com.dostojic.climbers.view.controller;
 
 import com.dostojic.climbers.communication.Communication;
-import com.dostojic.climbers.domain.Climber;
+import com.dostojic.climbers.view.model.Climber;
 import static com.dostojic.climbers.view.constant.Constants.FORM_CLIMBER;
 import static com.dostojic.climbers.view.constant.Constants.SELECTED_CLIMBER_ID;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
@@ -79,14 +79,12 @@ public class ClimberController {
                     try {
                         Communication.getInstance().delteClimberById(climber.getId());
                         JOptionPane.showMessageDialog(panelClimber, "Climber " + climber.getFirstName() + " " + climber.getLastName() + " deleted!", "Deleted climber", JOptionPane.INFORMATION_MESSAGE);
-                        MainCoordinator.getInstance().openPreviousForm();
+                        MainCoordinator.getInstance().openListClimberForm();
                     } catch (Exception ex) {
                         Logger.getLogger(ClimberController.class.getName()).log(Level.SEVERE, null, ex);
                         JOptionPane.showMessageDialog(panelClimber, ex.getMessage(), "Error deleting climber.", JOptionPane.ERROR_MESSAGE);
-
                     }
                 }
-
             }
         });
 

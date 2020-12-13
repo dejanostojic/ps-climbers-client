@@ -6,8 +6,7 @@
 package com.dostojic.climbers.view.controller;
 
 import com.dostojic.climbers.communication.Communication;
-import com.dostojic.climbers.domain.Climber;
-import com.dostojic.climbers.view.constant.Constants;
+import com.dostojic.climbers.view.model.Climber;
 import static com.dostojic.climbers.view.constant.Constants.LIST_CLIMBER;
 import static com.dostojic.climbers.view.constant.Constants.SELECTED_CLIMBER_ID;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;

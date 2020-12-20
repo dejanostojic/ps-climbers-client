@@ -217,7 +217,7 @@ public class PanelClimber extends javax.swing.JPanel {
     }
     
     public void buttonSaveAddActionListener(ActionListener actionListener) {
-        buttonCancel.addActionListener(actionListener);
+        buttonSave.addActionListener(actionListener);
     }
     
     public void buttonEnableChangesAddActionListener(ActionListener actionListener) {

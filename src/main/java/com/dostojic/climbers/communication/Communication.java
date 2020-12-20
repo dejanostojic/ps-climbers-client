@@ -19,7 +19,6 @@ import com.dostojic.climbers.view.model.mapper.ClimberMapper;
 import com.dostojic.climbers.view.model.mapper.UserMapper;
 import java.net.Socket;
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -27,10 +26,11 @@ import java.util.Optional;
  */
 public class Communication {
 
-    private Socket socket;
-    private Sender sender;
-    private Receiver receiver;
+    private final Socket socket;
+    private final Sender sender;
+    private final Receiver receiver;
     private static Communication instance;
+    private final ClimberMapper climberMapper = ClimberMapper.INSTANCE;
 
     private Communication() throws Exception {
         socket = new Socket("localhost", 9000);
@@ -55,19 +55,32 @@ public class Communication {
     public List<Climber> getAllClimbers() throws Exception {
         List<ClimberDto> climberDtoList = new GeneralCommunication<List<ClimberDto>>() {}
                 .makeDataRequest(Operation.GET_ALL_CLIMBERS);
-        return ClimberMapper.INSTANCE.fromDto(climberDtoList);
+        return climberMapper.fromDto(climberDtoList);
     }
 
     public Climber findClimberById(Integer id) throws Exception {
         ClimberDto climberDto = new GeneralCommunication<ClimberDto>() {}
                 .makeDataRequest(Operation.FIND_CLIMBER, id);
-        return ClimberMapper.INSTANCE.fromDto(climberDto);
+        return climberMapper.fromDto(climberDto);
                 
     }
 
     public void delteClimberById(Integer id) throws Exception {
         new GeneralCommunication() {}
                 .makeVoidRequest(Operation.DELETE_CLIMBER, id);
+    }
+
+    public void updateClimber(Climber climber) throws Exception {
+        new GeneralCommunication() {}
+                .makeVoidRequest(Operation.UPDATE_CLIMBER,
+                        climberMapper.toDto(climber));
+    }
+
+    public Climber saveClimber(Climber climber) throws Exception {
+        ClimberDto dto = new GeneralCommunication<ClimberDto>() {}
+                .makeDataRequest(Operation.SAVE_CLIMBER,
+                        climberMapper.toDto(climber));
+        return climberMapper.fromDto(dto);
     }
 
     /**

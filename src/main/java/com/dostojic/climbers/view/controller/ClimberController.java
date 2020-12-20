@@ -66,6 +66,54 @@ public class ClimberController {
             }
         });
 
+        panelClimber.buttonEditAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                edit();
+            }
+
+            private void edit() {
+                try {
+                    Climber climber = fromViewToModel();
+                    try {
+                        Communication.getInstance().updateClimber(climber);
+                        JOptionPane.showMessageDialog(panelClimber, "Climber succesfully edited", "Editing climber.", JOptionPane.ERROR_MESSAGE);
+                        MainCoordinator.getInstance().openListClimberForm();
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(panelClimber, e.getMessage(), "Error editing climber.", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(panelClimber, ex.getMessage(), "Error validating form.", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        panelClimber.buttonSaveAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                save();
+            }
+
+            private void save() {
+                try {
+                    Climber climber = fromViewToModel();
+                    try {
+                        Communication.getInstance().saveClimber(climber);
+                        JOptionPane.showMessageDialog(panelClimber, "Climber succesfully saved", "Saving climber.", JOptionPane.ERROR_MESSAGE);
+                        MainCoordinator.getInstance().openListClimberForm();
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(panelClimber, e.getMessage(), "Error saving climber.", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(panelClimber, ex.getMessage(), "Error validating form.", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
         panelClimber.buttonDeleteAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,6 +145,8 @@ public class ClimberController {
         if (FormMode.FORM_VIEW.equals(formMode) || FormMode.FORM_EDIT.equals(formMode)) {
             climber = getClimberFromParam();
             fromModelToView(climber);
+        } else {
+            climber = new Climber();
         }
 
     }
@@ -136,6 +186,22 @@ public class ClimberController {
         panelClimber.getTextFirstName().setText(climber.getFirstName());
         panelClimber.getTextLastName().setText(climber.getLastName());
         panelClimber.getTextYearOfBirth().setText(String.valueOf(climber.getYearOfBirth()));
+    }
+
+    private Climber fromViewToModel() throws Exception {
+        climber.setFirstName(panelClimber.getTextFirstName().getText().trim());
+        climber.setLastName(panelClimber.getTextLastName().getText().trim());
+        String year = panelClimber.getTextYearOfBirth().getText();
+        Integer yearInt = null;
+        try {
+            yearInt = Integer.parseInt(year);
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+            throw new Exception("You must insert valid year!");
+        }
+        climber.setYearOfBirth(yearInt);
+
+        return climber;
     }
 
     private Climber getClimberFromParam() throws Exception {

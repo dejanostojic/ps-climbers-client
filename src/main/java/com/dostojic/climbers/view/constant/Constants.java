@@ -16,5 +16,7 @@ public class Constants {
     public static final String LIST_CLIMBER  = "listClimber";
     public static final String SELECTED_CLIMBER_ID  = "selectedClimberId";
     public static final String ACTIVE_FORM  = "activeForm";
+    public static final String SELECTED_COMPETITION_ID  = "selectedCompetitionId";
+    public static final String FORM_COMPETITION  = "formCompetition";
 
 }

@@ -6,13 +6,13 @@
 package com.dostojic.climbers.view.controller;
 
 import com.dostojic.climbers.communication.Communication;
-import com.dostojic.climbers.view.model.Climber;
 import static com.dostojic.climbers.view.constant.Constants.LIST_CLIMBER;
 import static com.dostojic.climbers.view.constant.Constants.SELECTED_CLIMBER_ID;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
 import com.dostojic.climbers.view.form.climber.PanelListClimbers;
 import com.dostojic.climbers.view.form.util.FormMode;
+import com.dostojic.climbers.view.model.Climber;
 import com.dostojic.climbers.view.model.TableModelClimberList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,7 +48,6 @@ public class ClimberListController {
     }
 
     private void addActionListeners() {
-        System.out.println("todo add listeneras!!!");
         panelListClimbers.newClimberAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,42 +77,7 @@ public class ClimberListController {
                 }
             }
         });
-        panelListClimbers.deleteClimberAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteClimber();
-            }
-
-            private void deleteClimber() {
-                int selectedRow = panelListClimbers.getTableClimberList().getSelectedRow();
-                if (selectedRow != -1) {
-                    TableModelClimberList model = (TableModelClimberList) panelListClimbers.getTableClimberList().getModel();
-                    Climber climber = model.getClimberAt(selectedRow);
-                    String deleteQuestion = "Are you sure you want to delete climber: " + climber.getFirstName() + " " + climber.getLastName();
-                    int showConfirmDialog = JOptionPane.showConfirmDialog(panelListClimbers, deleteQuestion, "Confirm delete", JOptionPane.YES_NO_CANCEL_OPTION);
-                    if (JOptionPane.YES_OPTION == showConfirmDialog) {
-                        try {
-                            Communication.getInstance().delteClimberById(climber.getId());
-                        } catch (Exception ex) {
-                            Logger.getLogger(ClimberListController.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showMessageDialog(panelListClimbers, "Error deleting climber", "Delete error", JOptionPane.ERROR_MESSAGE);
-
-                        }
-                        try {
-                            prepareView();
-                        } catch (Exception ex) {
-                            Logger.getLogger(ClimberListController.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showMessageDialog(panelListClimbers, ex.getMessage(), "Error refreshing table climbers.", JOptionPane.ERROR_MESSAGE);
-
-                        }
-                    }
-
-                } else {
-                    // TODO: Show message in status bar!
-                    JOptionPane.showMessageDialog(panelListClimbers, "Please select the climber from the table.", "Details error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
+        
     }
 
     private void prepareView() throws Exception {

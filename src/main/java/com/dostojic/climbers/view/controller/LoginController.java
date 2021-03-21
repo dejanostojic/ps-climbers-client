@@ -6,11 +6,11 @@
 package com.dostojic.climbers.view.controller;
 
 import com.dostojic.climbers.communication.Communication;
-import com.dostojic.climbers.view.model.User;
 import com.dostojic.climbers.view.constant.Constants;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
 import com.dostojic.climbers.view.form.FormLogin;
+import com.dostojic.climbers.view.model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;

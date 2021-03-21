@@ -6,17 +6,16 @@
 package com.dostojic.climbers.view.controller;
 
 import com.dostojic.climbers.communication.Communication;
-import com.dostojic.climbers.view.model.Climber;
 import static com.dostojic.climbers.view.constant.Constants.FORM_CLIMBER;
 import static com.dostojic.climbers.view.constant.Constants.SELECTED_CLIMBER_ID;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
 import com.dostojic.climbers.view.form.climber.PanelClimber;
 import com.dostojic.climbers.view.form.util.FormMode;
+import com.dostojic.climbers.view.model.Climber;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -43,7 +42,6 @@ public class ClimberController {
         } catch (Exception ex) {
             Logger.getLogger(ClimberController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(panelClimber, ex.getMessage(), "Error opening form.", JOptionPane.ERROR_MESSAGE);
-
         }
     }
 

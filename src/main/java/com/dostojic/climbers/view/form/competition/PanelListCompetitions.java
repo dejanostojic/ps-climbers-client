@@ -3,27 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dostojic.climbers.view.form.climber;
+package com.dostojic.climbers.view.form.competition;
 
 import com.dostojic.climbers.view.form.util.FormStyleHelper;
-import com.dostojic.climbers.view.model.Climber;
-import com.dostojic.climbers.view.model.TableModelClimberList;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
- * @author planina
+ * @author Dejan.Ostojic
  */
-public class PanelListClimbers extends javax.swing.JPanel {
+public class PanelListCompetitions extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelListClimbers
+     * Creates new form PanelListCompetitions
      */
-    public PanelListClimbers() {
+    public PanelListCompetitions() {
         initComponents();
         FormStyleHelper.makeComponentTransparent(panelContent);
     }
@@ -38,25 +34,18 @@ public class PanelListClimbers extends javax.swing.JPanel {
     private void initComponents() {
 
         panelContent = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableClimberList = new javax.swing.JTable();
-        buttonDetails = new javax.swing.JButton();
-        buttonAdd = new javax.swing.JButton();
         filterPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textFieldFilterName = new javax.swing.JTextField();
         buttonFilterSearch = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableCompetitionList = new javax.swing.JTable();
+        buttonDetails = new javax.swing.JButton();
+        buttonAdd = new javax.swing.JButton();
 
         setOpaque(false);
 
-        tableClimberList.setModel(new TableModelClimberList(new ArrayList<Climber>()));
-        jScrollPane1.setViewportView(tableClimberList);
-
-        buttonDetails.setText("Details");
-
-        buttonAdd.setText("Add");
-
-        jLabel1.setText("Climber name:");
+        jLabel1.setText("Competition name:");
 
         buttonFilterSearch.setText("Search");
 
@@ -71,7 +60,7 @@ public class PanelListClimbers extends javax.swing.JPanel {
                 .addComponent(textFieldFilterName, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonFilterSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         filterPanelLayout.setVerticalGroup(
             filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,34 +73,52 @@ public class PanelListClimbers extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        tableCompetitionList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tableCompetitionList);
+
+        buttonDetails.setText("Details");
+
+        buttonAdd.setText("Add");
+
         javax.swing.GroupLayout panelContentLayout = new javax.swing.GroupLayout(panelContent);
         panelContent.setLayout(panelContentLayout);
         panelContentLayout.setHorizontalGroup(
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelContentLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonDetails)
-                            .addComponent(buttonAdd))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(filterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 66, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelContentLayout.setVerticalGroup(
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelContentLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelContentLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
                         .addComponent(buttonDetails)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonAdd)
-                        .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonAdd)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -132,22 +139,29 @@ public class PanelListClimbers extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getButtonAdd() {
-        return buttonAdd;
+    public void filterSearchActionListener(ActionListener actionListener) {
+        buttonFilterSearch.addActionListener(actionListener);
+    }
+    
+    
+    public void newCompetitinoActionListener(ActionListener actionListener) {
+        buttonAdd.addActionListener(actionListener);
+    }
+    
+    public void competitionDetailsActionListener(ActionListener actionListener) {
+        buttonDetails.addActionListener(actionListener);
     }
 
-    public JButton getButtonDetails() {
-        return buttonDetails;
+    public JTable getTableCompetitionList() {
+        return tableCompetitionList;
     }
 
-    public JPanel getPanelContent() {
-        return panelContent;
+    public JTextField getTextFieldFilterName() {
+        return textFieldFilterName;
     }
-
-    public JTable getTableClimberList() {
-        return tableClimberList;
-    }
-
+        
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonDetails;
@@ -156,16 +170,8 @@ public class PanelListClimbers extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelContent;
-    private javax.swing.JTable tableClimberList;
+    private javax.swing.JTable tableCompetitionList;
     private javax.swing.JTextField textFieldFilterName;
     // End of variables declaration//GEN-END:variables
-
-    public void climberDetailsAddActionListener(ActionListener actionListener) {
-        buttonDetails.addActionListener(actionListener);
-    }
-
-    public void newClimberAddActionListener(ActionListener actionListener) {
-        buttonAdd.addActionListener(actionListener);
-    }
 
 }

@@ -5,13 +5,13 @@
  */
 package com.dostojic.climbers.view.controller;
 
-import com.dostojic.climbers.view.model.User;
 import com.dostojic.climbers.view.constant.Constants;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
 import com.dostojic.climbers.view.form.MainForm;
 import com.dostojic.climbers.view.form.PanelMainContent;
 import com.dostojic.climbers.view.form.util.FormMode;
+import com.dostojic.climbers.view.model.User;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -47,8 +47,17 @@ public class MainController {
         mainForm.menuNewClimberAddMouseClicked((MouseEvent e) -> {
             MainCoordinator.getInstance().openClimberForm(FormMode.FORM_ADD);
         });
+        
         mainForm.menuSearchClimberAddMouseClicked((MouseEvent e) -> {
             MainCoordinator.getInstance().openListClimberForm();
+        });
+        
+        mainForm.menuNewCompetitionAddMouseClicked((MouseEvent e) -> {
+            MainCoordinator.getInstance().openCompetitionForm(FormMode.FORM_ADD);
+        });
+        
+        mainForm.menuSearchCompetitionAddMouseClicked((MouseEvent e) -> {
+            MainCoordinator.getInstance().openListCompetitionsForm();
         });
     }
 

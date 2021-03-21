@@ -39,6 +39,20 @@
             <artifactId>mapstruct</artifactId>
             <version>1.4.1.Final</version>
         </dependency>
+<!--        
+         https://mvnrepository.com/artifact/com.github.lgooddatepicker/LGoodDatePicker 
+        <dependency>
+            <groupId>com.github.lgooddatepicker</groupId>
+            <artifactId>LGoodDatePicker</artifactId>
+            <version>11.1.0</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
+
     </dependencies>
     
     <build>
@@ -89,4 +103,14 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    
+    <profiles>
+        <profile>
+            <id>ps-climbers</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>    
+    </profiles>
+    
 </project>

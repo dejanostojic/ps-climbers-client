@@ -78,7 +78,7 @@ public class PanelRegFees extends javax.swing.JPanel {
                         .addComponent(buttonAddNew)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonDelete)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

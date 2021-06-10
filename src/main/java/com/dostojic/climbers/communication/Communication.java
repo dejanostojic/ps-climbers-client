@@ -11,6 +11,7 @@ import com.dostojic.climbers.common.communication.Request;
 import com.dostojic.climbers.common.communication.Response;
 import com.dostojic.climbers.common.communication.Sender;
 import com.dostojic.climbers.common.dto.ClimberDto;
+import com.dostojic.climbers.common.dto.ClimberSearchCriteriaDto;
 import com.dostojic.climbers.common.dto.CompetitionDto;
 import com.dostojic.climbers.common.dto.CompetitionSearchCriteriaDto;
 import com.dostojic.climbers.common.dto.LoginCredentialsDto;
@@ -59,12 +60,6 @@ public class Communication {
                 .makeDataRequest(Operation.LOGIN, loginCredentials);
         return UserMapper.INSTANCE.fromDto(resp);
 //        return new User(1L, "test", "test", "test", "test");
-    }
-
-    public List<Climber> getAllClimbers() throws Exception {
-        List<ClimberDto> climberDtoList = new GeneralCommunication<List<ClimberDto>>() {}
-                .makeDataRequest(Operation.GET_ALL_CLIMBERS);
-        return climberMapper.fromDto(climberDtoList);
     }
 
     public Climber findClimberById(Integer id) throws Exception {
@@ -117,6 +112,11 @@ public class Communication {
                         competitionMapper.toDto(competition));
         return competitionMapper.fromDto(dto);    
     }
+
+    public List<Climber> getClimbers(ClimberSearchCriteriaDto searchCriteria) throws Exception {
+        List<ClimberDto> climberDtoList = new GeneralCommunication<List<ClimberDto>>() {}
+                        .makeDataRequest(Operation.SEARCH_CLIMBERS, searchCriteria);
+                return climberMapper.fromDto(climberDtoList);    }
 
     /**
      * Generic template for creating requests.

@@ -5,6 +5,7 @@
  */
 package com.dostojic.climbers.view.controller;
 
+import com.dostojic.climbers.common.dto.ClimberSearchCriteriaDto;
 import com.dostojic.climbers.communication.Communication;
 import static com.dostojic.climbers.view.constant.Constants.LIST_CLIMBER;
 import static com.dostojic.climbers.view.constant.Constants.SELECTED_CLIMBER_ID;
@@ -16,6 +17,8 @@ import com.dostojic.climbers.view.model.Climber;
 import com.dostojic.climbers.view.model.TableModelClimberList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,13 +44,38 @@ public class ClimberListController {
             MainCoordinator.getInstance().setMainContent(panelListClimbers, LIST_CLIMBER);
         } catch (Exception ex) {
             Logger.getLogger(ClimberListController.class.getName()).log(Level.SEVERE, null, ex);
-            
+
             JOptionPane.showMessageDialog(panelListClimbers, ex.getMessage(), "Error opening climber list form", JOptionPane.ERROR_MESSAGE);
 
         }
     }
 
     private void addActionListeners() {
+        panelListClimbers.buttonSearchAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchClimbers();
+            }
+
+            private void searchClimbers() {
+                try {
+                    JTable table = panelListClimbers.getTableClimberList();
+                    String firstName = panelListClimbers.getTextFieldFilterFirstName().getText().trim();
+                    String lastName = panelListClimbers.getTextFieldFilterLastName().getText().trim();
+                    List<Climber> climbers = Communication.getInstance().getClimbers(
+                            new ClimberSearchCriteriaDto(firstName, lastName));
+                    
+                    if(climbers.isEmpty()){
+                        JOptionPane.showMessageDialog(panelListClimbers, "System con not find climbers for search critera.", "No search results", JOptionPane.ERROR_MESSAGE);
+                    }
+                    table.setModel(new TableModelClimberList(climbers));
+                    table.setRowHeight(32);
+                } catch (Exception ex) {
+                    Logger.getLogger(CompetitionListController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
         panelListClimbers.newClimberAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +86,7 @@ public class ClimberListController {
                 MainCoordinator.getInstance().openClimberForm(FormMode.FORM_ADD);
             }
         });
+
         panelListClimbers.climberDetailsAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,12 +106,12 @@ public class ClimberListController {
                 }
             }
         });
-        
+
     }
 
     private void prepareView() throws Exception {
         JTable table = panelListClimbers.getTableClimberList();
-        table.setModel(new TableModelClimberList(Communication.getInstance().getAllClimbers()));
+        table.setModel(new TableModelClimberList(new ArrayList<>()));
     }
 
 }

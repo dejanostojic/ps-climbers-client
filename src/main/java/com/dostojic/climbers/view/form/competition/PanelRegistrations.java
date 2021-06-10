@@ -45,8 +45,10 @@ public class PanelRegistrations extends javax.swing.JPanel {
         buttonDeleteRegistration = new javax.swing.JButton();
 
         panelTableRegistrations.setBorder(javax.swing.BorderFactory.createTitledBorder("Registrations"));
+        panelTableRegistrations.setPreferredSize(null);
 
         panelRegistrationsFilter.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
+        panelRegistrationsFilter.setPreferredSize(null);
 
         jLabel1.setText("Climber name:");
 
@@ -120,13 +122,13 @@ public class PanelRegistrations extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonAddRegistration)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonUpdateRegistration)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonDeleteRegistration))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonDeleteRegistration)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -145,7 +147,7 @@ public class PanelRegistrations extends javax.swing.JPanel {
             .addGroup(panelTableRegistrationsLayout.createSequentialGroup()
                 .addComponent(panelRegistrationsFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -156,7 +158,7 @@ public class PanelRegistrations extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelTableRegistrations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelTableRegistrations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,6 +189,10 @@ public class PanelRegistrations extends javax.swing.JPanel {
     
     public void addRegistrationActionListener(ActionListener actionListener) {
         buttonAddRegistration.addActionListener(actionListener);
+    }
+    
+    public void updateRegistrationActionListener(ActionListener actionListener) {
+        buttonUpdateRegistration.addActionListener(actionListener);
     }
     
     public void deleteRegistrationActionListener(ActionListener actionListener) {

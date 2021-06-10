@@ -75,8 +75,9 @@ public class ClimberController {
                     Climber climber = fromViewToModel();
                     try {
                         Communication.getInstance().updateClimber(climber);
-                        JOptionPane.showMessageDialog(panelClimber, "Climber succesfully edited", "Editing climber.", JOptionPane.ERROR_MESSAGE);
-                        MainCoordinator.getInstance().openListClimberForm();
+                        JOptionPane.showMessageDialog(panelClimber, "Climber succesfully edited", "Editing climber.", JOptionPane.INFORMATION_MESSAGE);
+                        Session.getInstance().addParam(SELECTED_CLIMBER_ID, climber.getId());
+                        MainCoordinator.getInstance().openClimberForm(FormMode.FORM_VIEW);
 
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(panelClimber, e.getMessage(), "Error editing climber.", JOptionPane.ERROR_MESSAGE);
@@ -98,9 +99,11 @@ public class ClimberController {
                 try {
                     Climber climber = fromViewToModel();
                     try {
-                        Communication.getInstance().saveClimber(climber);
-                        JOptionPane.showMessageDialog(panelClimber, "Climber succesfully saved", "Saving climber.", JOptionPane.ERROR_MESSAGE);
-                        MainCoordinator.getInstance().openListClimberForm();
+                        Climber savedClimber = Communication.getInstance().saveClimber(climber);
+                        JOptionPane.showMessageDialog(panelClimber, "Climber succesfully saved", "Saving climber.", JOptionPane.INFORMATION_MESSAGE);
+//                        MainCoordinator.getInstance().openListClimberForm();
+                        Session.getInstance().addParam(SELECTED_CLIMBER_ID, savedClimber.getId());
+                        MainCoordinator.getInstance().openClimberForm(FormMode.FORM_VIEW);
 
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(panelClimber, e.getMessage(), "Error saving climber.", JOptionPane.ERROR_MESSAGE);

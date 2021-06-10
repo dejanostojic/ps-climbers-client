@@ -7,6 +7,7 @@ package com.dostojic.climbers.view.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -109,10 +110,26 @@ public class TableModelRegistrations extends AbstractTableModel {
         fireTableDataChanged();
     }
     
+    public void addRow(Registration registration){
+        data.add(registration);
+//        fireTableRowsInserted(data.size() - 1, data.size() - 1);
+        fireTableDataChanged();
+    }
+    
+    public void updateRow(Registration registration, int rowIndex){
+        data.set(rowIndex, registration);
+//        fireTableRowsUpdated(rowIndex, rowIndex);
+        fireTableDataChanged();
+    }
+    
     public void deleteRow(int index){
         data.remove(index);
         renumerate();
         fireTableDataChanged();
+    }
+    
+    public Registration getObjectAt(int rowIndex){
+        return data.get(rowIndex);
     }
     
     public void renumerate(){

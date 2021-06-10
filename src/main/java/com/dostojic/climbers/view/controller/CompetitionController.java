@@ -9,14 +9,19 @@ import com.dostojic.climbers.communication.Communication;
 import com.dostojic.climbers.view.constant.Constants;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
+import com.dostojic.climbers.view.form.competition.PanelChooseClimber;
 import com.dostojic.climbers.view.form.competition.PanelCompetition;
 import com.dostojic.climbers.view.form.competition.PanelRegFees;
+import com.dostojic.climbers.view.form.competition.PanelRegistrationDetails;
 import com.dostojic.climbers.view.form.competition.PanelRegistrations;
 import com.dostojic.climbers.view.form.competition.PanelRoutes;
 import com.dostojic.climbers.view.form.util.FormMode;
+import com.dostojic.climbers.view.model.Climber;
 import com.dostojic.climbers.view.model.Competition;
 import com.dostojic.climbers.view.model.JDateChooserCellEditorFormatted;
+import com.dostojic.climbers.view.model.Registration;
 import com.dostojic.climbers.view.model.RegistrationFee;
+import com.dostojic.climbers.view.model.TableModelClimberList;
 import com.dostojic.climbers.view.model.TableModelRegistrationFee;
 import com.dostojic.climbers.view.model.TableModelRegistrations;
 import com.dostojic.climbers.view.model.TableModelRoutes;
@@ -32,6 +37,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -46,9 +52,10 @@ public class CompetitionController {
     private Competition competition;
     private PanelRegFees panelRegFees;
     private PanelRoutes panelRoutes;
-    private PanelRegistrations panelRegistrations;
+//    private PanelRegistrations panelRegistrations;
     private final String DATE_FORMAT = "dd.MM.yyyy";
     private final DateFormat df;
+    private CompetitionRegistrationController registrationController;
 
     public CompetitionController(PanelCompetition panelCompetition) {
         this.panelCompetition = panelCompetition;
@@ -162,6 +169,7 @@ public class CompetitionController {
 
         competition.setRoutes(((TableModelRoutes) panelRoutes.getTableRoutes().getModel()).getData());
         competition.setRegistrationFees(((TableModelRegistrationFee) panelRegFees.getTableRegFees().getModel()).getData());
+        competition.setRegistrations(((TableModelRegistrations) registrationController.getPanelRegistrations().getTableRegistrations().getModel()).getData());
 
         return competition;
     }
@@ -193,7 +201,10 @@ public class CompetitionController {
         } else {
             competition = new Competition();
         }
-         addPanelsToTabbedPane(competition);
+        // initialize controler for registrations after seting the competition first!
+        this.registrationController = new CompetitionRegistrationController(this, new PanelRegistrations());
+
+        addPanelsToTabbedPane(competition);
 
     }
     
@@ -287,10 +298,10 @@ public class CompetitionController {
 
     private void addPanelsToTabbedPane(Competition competition) {
         panelRegFees = setupPanelRegFees(competition);
-        panelRoutes = setupPanelRoutes(competition);
-        panelRegistrations = setupPanelRegistrations(competition);
+        panelRoutes = setupPanelRoutes(competition);        
+//        panelRegistrations = setupPanelRegistrations(competition); // TODO REMOVE THIS
 
-        panelCompetition.addPannelsToTabbedPane(panelRegFees, panelRoutes, panelRegistrations);
+        panelCompetition.addPannelsToTabbedPane(panelRegFees, panelRoutes, registrationController.getPanelRegistrations());
 
     }
 
@@ -353,35 +364,7 @@ public class CompetitionController {
         return panelRoutes;
     }
 
-    private PanelRegistrations setupPanelRegistrations(Competition competition) {
-        PanelRegistrations panelRegistrations = new PanelRegistrations();
-
-        JTable tableRegistrations = panelRegistrations.getTableRegistrations();
-        TableModelRegistrations model = new TableModelRegistrations(competition.getRegistrations());
-        tableRegistrations.setModel(model);
-        
-        tableRegistrations.setDefaultEditor(Date.class, new JDateChooserCellEditorFormatted("dd.MM.yyyy"));
-
-        JComboBox<RegistrationFee> registrationFeesCombo = new JComboBox<>();
-        
-        competition.getRegistrationFees()
-                .forEach(registrationFeesCombo::addItem);
-        
-        tableRegistrations.getColumnModel().getColumn(6)
-                .setCellEditor(new DefaultCellEditor(registrationFeesCombo));
-        
-        panelRegistrations.addRegistrationActionListener((e) -> {
-            model.addRow();
-        });
-
-        panelRegistrations.deleteRegistrationActionListener((e) -> {
-            int row = tableRegistrations.getSelectedRow();
-
-            if (row != -1) {
-                model.deleteRow(row);
-            }
-        });
-        return panelRegistrations;
+    public Competition getCompetition() {
+        return competition;
     }
-
 }

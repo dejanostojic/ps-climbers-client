@@ -5,15 +5,17 @@
  */
 package com.dostojic.climbers.view.form.competition;
 
-import com.dostojic.climbers.view.form.climber.*;
 import com.dostojic.climbers.view.form.util.FormStyleHelper;
 import com.dostojic.climbers.view.model.Climber;
-import com.dostojic.climbers.view.model.TableModelClimberList;
+import com.dostojic.climbers.view.model.RegistrationFee;
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -38,66 +40,34 @@ public class PanelRegistrationDetails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelContent = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableClimberList = new javax.swing.JTable();
-        buttonDetails = new javax.swing.JButton();
-        buttonAdd = new javax.swing.JButton();
-        filterPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        textFieldFilterName = new javax.swing.JTextField();
-        buttonFilterSearch = new javax.swing.JButton();
+        panelContent = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboClimber = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        textStartNumber = new javax.swing.JTextField();
+        checkPaid = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        comboRegistrationFees = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        buttonFindClimber = new javax.swing.JButton();
+        dateCreated = new com.toedter.calendar.JDateChooser();
+        datePaid = new com.toedter.calendar.JDateChooser();
+        labelComboClimber = new javax.swing.JLabel();
+        labelComboRegistrationFee = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        buttonSave = new javax.swing.JButton();
+        buttonEdit = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
+        buttonEnableChanges = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
 
         setOpaque(false);
-
-        tableClimberList.setModel(new TableModelClimberList(new ArrayList<Climber>()));
-        jScrollPane1.setViewportView(tableClimberList);
-
-        buttonDetails.setText("Details");
-
-        buttonAdd.setText("Add");
-
-        jLabel1.setText("Climber name:");
-
-        buttonFilterSearch.setText("Search");
-
-        javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
-        filterPanel.setLayout(filterPanelLayout);
-        filterPanelLayout.setHorizontalGroup(
-            filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(filterPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldFilterName, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonFilterSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        filterPanelLayout.setVerticalGroup(
-            filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(filterPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(textFieldFilterName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonFilterSearch))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
 
         jLabel2.setText("Choose climber and registration fee");
 
@@ -105,25 +75,21 @@ public class PanelRegistrationDetails extends javax.swing.JPanel {
 
         jLabel4.setText("Start number:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel5.setText("Paid");
 
         jLabel6.setText("Created date:");
 
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        checkPaid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                checkPaidActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Paid date:");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("Registration fee:");
 
-        jButton1.setText("Find climber");
+        buttonFindClimber.setText("Find climber");
 
         javax.swing.GroupLayout panelContentLayout = new javax.swing.GroupLayout(panelContent);
         panelContent.setLayout(panelContentLayout);
@@ -132,39 +98,35 @@ public class PanelRegistrationDetails extends javax.swing.JPanel {
             .addGroup(panelContentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(14, 14, 14)
-                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jCheckBox1))
-                    .addComponent(jComboBox6, 0, 238, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
-            .addGroup(panelContentLayout.createSequentialGroup()
-                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelContentLayout.createSequentialGroup()
                         .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelContentLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(14, 14, 14)
+                        .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentLayout.createSequentialGroup()
                                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buttonAdd)
-                                    .addComponent(buttonDetails)))
+                                    .addComponent(labelComboClimber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(panelContentLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(checkPaid))
+                                    .addComponent(comboClimber, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textStartNumber))
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonFindClimber, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelContentLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
+                                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(labelComboRegistrationFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboRegistrationFees, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dateCreated, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(datePaid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(panelContentLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -172,44 +134,79 @@ public class PanelRegistrationDetails extends javax.swing.JPanel {
             panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentLayout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelContentLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
                     .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(comboClimber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonFindClimber)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelComboClimber)
+                .addGap(4, 4, 4)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
+                    .addComponent(jLabel4)
+                    .addComponent(textStartNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelContentLayout.createSequentialGroup()
-                        .addComponent(jLabel5)))
-                .addGap(2, 2, 2)
-                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6))
+                    .addGroup(panelContentLayout.createSequentialGroup()
+                        .addComponent(checkPaid)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dateCreated, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datePaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelContentLayout.createSequentialGroup()
-                        .addComponent(buttonDetails)
-                        .addGap(7, 7, 7)
-                        .addComponent(buttonAdd))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(comboRegistrationFees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelComboRegistrationFee)
+                .addGap(0, 59, Short.MAX_VALUE))
+        );
+
+        jPanel1.setOpaque(false);
+
+        buttonSave.setText("Save");
+
+        buttonEdit.setText("Edit");
+
+        buttonCancel.setText("Cancel");
+
+        buttonDelete.setText("Delete");
+
+        buttonEnableChanges.setText("Enable chages");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(buttonDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonEdit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
+                .addComponent(buttonCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonEnableChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSave))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSave)
+                    .addComponent(buttonEdit)
+                    .addComponent(buttonCancel)
+                    .addComponent(buttonDelete)
+                    .addComponent(buttonEnableChanges))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -218,46 +215,74 @@ public class PanelRegistrationDetails extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void checkPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPaidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_checkPaidActionPerformed
 
-    public JButton getButtonAdd() {
-        return buttonAdd;
+     public void addFindClimberActionListener(ActionListener actionListener) {
+        buttonFindClimber.addActionListener(actionListener);
     }
-
-    public JButton getButtonDetails() {
-        return buttonDetails;
+    
+    // standard buttons start
+     
+    public void buttonCancelAddActionListener(ActionListener actionListener) {
+        buttonCancel.addActionListener(actionListener);
     }
-
+    
+    public void buttonDeleteAddActionListener(ActionListener actionListener) {
+        buttonDelete.addActionListener(actionListener);
+    }
+    
+    public void buttonSaveAddActionListener(ActionListener actionListener) {
+        buttonSave.addActionListener(actionListener);
+    }
+    
+    public void buttonEnableChangesAddActionListener(ActionListener actionListener) {
+        buttonEnableChanges.addActionListener(actionListener);
+    }
+    
+    public void buttonEditAddActionListener(ActionListener actionListener) {
+        buttonEdit.addActionListener(actionListener);
+    }
+    
+    // standard buttons end
+    
     public JPanel getPanelContent() {
         return panelContent;
     }
 
-    public JTable getTableClimberList() {
-        return tableClimberList;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAdd;
-    private javax.swing.JButton buttonDetails;
-    private javax.swing.JButton buttonFilterSearch;
-    private javax.swing.JPanel filterPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JButton buttonCancel;
+    private javax.swing.JButton buttonDelete;
+    private javax.swing.JButton buttonEdit;
+    private javax.swing.JButton buttonEnableChanges;
+    private javax.swing.JButton buttonFindClimber;
+    private javax.swing.JButton buttonSave;
+    private javax.swing.JCheckBox checkPaid;
+    private javax.swing.JComboBox<Climber> comboClimber;
+    private javax.swing.JComboBox<RegistrationFee> comboRegistrationFees;
+    private com.toedter.calendar.JDateChooser dateCreated;
+    private com.toedter.calendar.JDateChooser datePaid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -266,21 +291,71 @@ public class PanelRegistrationDetails extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelComboClimber;
+    private javax.swing.JLabel labelComboRegistrationFee;
     private javax.swing.JPanel panelContent;
-    private javax.swing.JTable tableClimberList;
-    private javax.swing.JTextField textFieldFilterName;
+    private javax.swing.JTextField textStartNumber;
     // End of variables declaration//GEN-END:variables
 
-    public void climberDetailsAddActionListener(ActionListener actionListener) {
-        buttonDetails.addActionListener(actionListener);
+    public JComboBox<Climber> getComboClimber() {
+        return comboClimber;
     }
 
-    public void newClimberAddActionListener(ActionListener actionListener) {
-        buttonAdd.addActionListener(actionListener);
+    public JLabel getLabelComboClimber() {
+        return labelComboClimber;
+    }
+    
+    
+    
+    public JButton getButtonCancel() {
+        return buttonCancel;
     }
 
+    public JButton getButtonDelete() {
+        return buttonDelete;
+    }
+
+    public JButton getButtonEdit() {
+        return buttonEdit;
+    }
+
+    public JButton getButtonSave() {
+        return buttonSave;
+    }
+
+    public JButton getButtonEnableChanges() {
+        return buttonEnableChanges;
+    }
+
+    public JButton getButtonFindClimber() {
+        return buttonFindClimber;
+    }
+
+    public JCheckBox getCheckPaid() {
+        return checkPaid;
+    }
+
+    public JComboBox<RegistrationFee> getComboRegistrationFees() {
+        return comboRegistrationFees;
+    }
+
+    public JDateChooser getDateCreated() {
+        return dateCreated;
+    }
+
+    public JDateChooser getDatePaid() {
+        return datePaid;
+    }
+
+    public JTextField getTextStartNumber() {
+        return textStartNumber;
+    }
+
+    public JLabel getLabelComboRegistrationFee() {
+        return labelComboRegistrationFee;
+    }
+
+    
+    
 }

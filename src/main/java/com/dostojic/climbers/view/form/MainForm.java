@@ -52,6 +52,7 @@ public class MainForm extends javax.swing.JFrame {
         labelClose = new javax.swing.JLabel();
         panelButtonMax = new javax.swing.JPanel();
         labelMaximize = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
         panelMenu = new javax.swing.JPanel();
         panelMenuIcon = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -82,7 +83,7 @@ public class MainForm extends javax.swing.JFrame {
         panelMainContent = new com.dostojic.climbers.view.form.PanelMainContent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1600, 900));
+        setPreferredSize(new java.awt.Dimension(1200, 700));
 
         panelHeader.setBackground(new java.awt.Color(5, 10, 46));
         panelHeader.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -129,6 +130,11 @@ public class MainForm extends javax.swing.JFrame {
         panelIconMinMaxClose.add(panelButtonMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
 
         panelHeader.add(panelIconMinMaxClose, java.awt.BorderLayout.LINE_END);
+
+        labelTitle.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitle.setText("Climbing competitions app");
+        panelHeader.add(labelTitle, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -287,6 +293,8 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
 
         panelMainContent.setBackground(new java.awt.Color(73, 128, 242));
+        panelMainContent.setMaximumSize(new java.awt.Dimension(1000, 600));
+        panelMainContent.setPreferredSize(null);
         panelMainContent.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelMainContent, java.awt.BorderLayout.CENTER);
 
@@ -343,6 +351,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelMaximize;
     private javax.swing.JLabel labelMinimize;
     private javax.swing.JLabel labelSettings;
+    private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelButtonClose;
     private javax.swing.JPanel panelButtonMax;
     private javax.swing.JPanel panelButtonMin;
@@ -376,6 +385,14 @@ public class MainForm extends javax.swing.JFrame {
 
     public void menuSearchCompetitionAddMouseClicked(Consumer<MouseEvent> handler) {
         FormActionHelper.addMouseClicked(panelCompetitonSearch, handler);
+    }
+
+    public void menuPanelClimbersMainAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelClimbersMain, handler);
+    }
+    
+    public void menuPanelCompetitonMainAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelCompetitonMain, handler);
     }
     
     public PanelMainContent getPanelMainContent() {
@@ -493,6 +510,11 @@ public class MainForm extends javax.swing.JFrame {
 
     }
 
+    public JLabel getLabelTitle() {
+        return labelTitle;
+    }
+
+    
     private void changecolor(JPanel hover, Color rand) {
         hover.setBackground(rand);
     }

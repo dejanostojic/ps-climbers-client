@@ -21,6 +21,11 @@ public class Registration {
     private Date paidDate;
     private RegistrationFee registrationFee;
 
+    public Registration() {
+        paid = false;
+    }
+
+    
     public Climber getClimber() {
         return climber;
     }

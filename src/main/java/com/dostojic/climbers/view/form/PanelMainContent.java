@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -43,7 +44,10 @@ public class PanelMainContent extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainContentScroll = new javax.swing.JScrollPane();
+
         setLayout(new java.awt.BorderLayout());
+        add(mainContentScroll, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     
     @Override
@@ -56,5 +60,12 @@ public class PanelMainContent extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane mainContentScroll;
     // End of variables declaration//GEN-END:variables
+
+    public JScrollPane getMainContentScroll() {
+        return mainContentScroll;
+    }
+
+
 }

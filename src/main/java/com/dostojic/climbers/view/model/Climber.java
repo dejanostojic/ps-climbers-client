@@ -67,7 +67,7 @@ public class Climber implements Serializable {
 
     @Override
     public String toString() {
-        return "Climber{" + "firstName=" + firstName + ", lastName=" + lastName + ", yearOfBirth=" + yearOfBirth + '}';
+        return firstName + " " + lastName + ", " + yearOfBirth;
     }
 
     @Override

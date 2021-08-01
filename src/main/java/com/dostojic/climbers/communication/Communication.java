@@ -11,11 +11,16 @@ import com.dostojic.climbers.common.communication.Request;
 import com.dostojic.climbers.common.communication.Response;
 import com.dostojic.climbers.common.communication.Sender;
 import com.dostojic.climbers.common.dto.ClimberDto;
+import com.dostojic.climbers.common.dto.ClimberSearchCriteriaDto;
+import com.dostojic.climbers.common.dto.CompetitionDto;
+import com.dostojic.climbers.common.dto.CompetitionSearchCriteriaDto;
 import com.dostojic.climbers.common.dto.LoginCredentialsDto;
 import com.dostojic.climbers.common.dto.UserDto;
 import com.dostojic.climbers.view.model.Climber;
+import com.dostojic.climbers.view.model.Competition;
 import com.dostojic.climbers.view.model.User;
 import com.dostojic.climbers.view.model.mapper.ClimberMapper;
+import com.dostojic.climbers.view.model.mapper.CompetitionMapper;
 import com.dostojic.climbers.view.model.mapper.UserMapper;
 import java.net.Socket;
 import java.util.List;
@@ -31,11 +36,15 @@ public class Communication {
     private final Receiver receiver;
     private static Communication instance;
     private final ClimberMapper climberMapper = ClimberMapper.INSTANCE;
+    private final CompetitionMapper competitionMapper = CompetitionMapper.INSTANCE;
 
     private Communication() throws Exception {
         socket = new Socket("localhost", 9000);
         sender = new Sender(socket);
         receiver = new Receiver(socket);
+//        socket= null;
+//        sender = null;
+//        receiver = null;
     }
 
     public static Communication getInstance() throws Exception {
@@ -50,12 +59,7 @@ public class Communication {
         UserDto resp = new GeneralCommunication<UserDto>(){}
                 .makeDataRequest(Operation.LOGIN, loginCredentials);
         return UserMapper.INSTANCE.fromDto(resp);
-    }
-
-    public List<Climber> getAllClimbers() throws Exception {
-        List<ClimberDto> climberDtoList = new GeneralCommunication<List<ClimberDto>>() {}
-                .makeDataRequest(Operation.GET_ALL_CLIMBERS);
-        return climberMapper.fromDto(climberDtoList);
+//        return new User(1L, "test", "test", "test", "test");
     }
 
     public Climber findClimberById(Integer id) throws Exception {
@@ -82,6 +86,37 @@ public class Communication {
                         climberMapper.toDto(climber));
         return climberMapper.fromDto(dto);
     }
+
+    public Competition saveCompetition(Competition competition) throws Exception {
+        CompetitionDto dto = new GeneralCommunication<CompetitionDto>() {}
+                .makeDataRequest(Operation.SAVE_COMPETITION,
+                        competitionMapper.toDto(competition));
+        return competitionMapper.fromDto(dto);    
+    }
+
+    public List<Competition> getCompetitions(CompetitionSearchCriteriaDto searchCriteria) throws Exception {
+        List<CompetitionDto> competitionDtoList = new GeneralCommunication<List<CompetitionDto>>() {}
+                .makeDataRequest(Operation.SEARCH_COMPETITIONS, searchCriteria);
+        return competitionMapper.toCompetitions(competitionDtoList);
+    }
+
+    public Competition findCompetitionById(Integer id) throws Exception {
+        CompetitionDto competitionDto = new GeneralCommunication<CompetitionDto>() {}
+                .makeDataRequest(Operation.FIND_COMPETITION, id);
+        return competitionMapper.fromDto(competitionDto);
+    }
+
+    public Competition updateCompetition(Competition competition) throws Exception {
+        CompetitionDto dto = new GeneralCommunication<CompetitionDto>() {}
+                .makeDataRequest(Operation.UPDATE_COMPETITION,
+                        competitionMapper.toDto(competition));
+        return competitionMapper.fromDto(dto);    
+    }
+
+    public List<Climber> getClimbers(ClimberSearchCriteriaDto searchCriteria) throws Exception {
+        List<ClimberDto> climberDtoList = new GeneralCommunication<List<ClimberDto>>() {}
+                        .makeDataRequest(Operation.SEARCH_CLIMBERS, searchCriteria);
+                return climberMapper.fromDto(climberDtoList);    }
 
     /**
      * Generic template for creating requests.

@@ -22,8 +22,8 @@ public class FormLogin extends javax.swing.JFrame {
      */
     public FormLogin() {
         initComponents();
-        textUsername.setText("admin");
-        pfPassword.setText("admin");
+        textUsername.setText("admin1");
+        pfPassword.setText("admin1");
     }
 
     /**

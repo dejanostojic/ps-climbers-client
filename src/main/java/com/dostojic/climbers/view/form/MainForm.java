@@ -5,10 +5,10 @@
  */
 package com.dostojic.climbers.view.form;
 
-import com.dostojic.climbers.view.form.util.FrameDragListener;
-import com.dostojic.climbers.view.form.util.FormStyleHelper;
 import com.dostojic.climbers.view.form.climber.PanelListClimbers;
 import com.dostojic.climbers.view.form.util.FormActionHelper;
+import com.dostojic.climbers.view.form.util.FormStyleHelper;
+import com.dostojic.climbers.view.form.util.FrameDragListener;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
@@ -52,6 +52,7 @@ public class MainForm extends javax.swing.JFrame {
         labelClose = new javax.swing.JLabel();
         panelButtonMax = new javax.swing.JPanel();
         labelMaximize = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
         panelMenu = new javax.swing.JPanel();
         panelMenuIcon = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -70,19 +71,19 @@ public class MainForm extends javax.swing.JFrame {
         labelClimbersText2 = new javax.swing.JLabel();
         labelClimbersIcon2 = new javax.swing.JLabel();
         panelMenuCompetition = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        panelCompetitonMain = new javax.swing.JPanel();
         labelClimbersText3 = new javax.swing.JLabel();
         labelClimbersIcon3 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        panelCompetitonNew = new javax.swing.JPanel();
         labelClimbersText4 = new javax.swing.JLabel();
         labelClimbersIcon4 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
+        panelCompetitonSearch = new javax.swing.JPanel();
         labelClimbersText5 = new javax.swing.JLabel();
         labelClimbersIcon5 = new javax.swing.JLabel();
         panelMainContent = new com.dostojic.climbers.view.form.PanelMainContent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1600, 900));
+        setPreferredSize(new java.awt.Dimension(1200, 700));
 
         panelHeader.setBackground(new java.awt.Color(5, 10, 46));
         panelHeader.setPreferredSize(new java.awt.Dimension(800, 50));
@@ -129,6 +130,11 @@ public class MainForm extends javax.swing.JFrame {
         panelIconMinMaxClose.add(panelButtonMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
 
         panelHeader.add(panelIconMinMaxClose, java.awt.BorderLayout.LINE_END);
+
+        labelTitle.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitle.setText("Climbing competitions app");
+        panelHeader.add(labelTitle, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -233,52 +239,52 @@ public class MainForm extends javax.swing.JFrame {
         panelMenuCompetition.setBackground(new java.awt.Color(25, 29, 74));
         panelMenuCompetition.setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setBackground(new java.awt.Color(25, 29, 74));
-        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelCompetitonMain.setBackground(new java.awt.Color(25, 29, 74));
+        panelCompetitonMain.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelCompetitonMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelClimbersText3.setBackground(new java.awt.Color(138, 165, 195));
         labelClimbersText3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         labelClimbersText3.setForeground(new java.awt.Color(255, 255, 255));
         labelClimbersText3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelClimbersText3.setText("Competitions");
-        jPanel7.add(labelClimbersText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 170, 50));
+        panelCompetitonMain.add(labelClimbersText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 170, 50));
 
         labelClimbersIcon3.setBackground(new java.awt.Color(138, 165, 195));
         labelClimbersIcon3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel7.add(labelClimbersIcon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
+        panelCompetitonMain.add(labelClimbersIcon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        panelMenuCompetition.add(jPanel7, java.awt.BorderLayout.PAGE_START);
+        panelMenuCompetition.add(panelCompetitonMain, java.awt.BorderLayout.PAGE_START);
 
-        jPanel8.setBackground(new java.awt.Color(25, 29, 74));
-        jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelCompetitonNew.setBackground(new java.awt.Color(25, 29, 74));
+        panelCompetitonNew.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelCompetitonNew.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelClimbersText4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         labelClimbersText4.setForeground(new java.awt.Color(255, 255, 255));
         labelClimbersText4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelClimbersText4.setText("New");
-        jPanel8.add(labelClimbersText4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 120, 50));
+        panelCompetitonNew.add(labelClimbersText4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 120, 50));
 
         labelClimbersIcon4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel8.add(labelClimbersIcon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 50, 50));
+        panelCompetitonNew.add(labelClimbersIcon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 50, 50));
 
-        panelMenuCompetition.add(jPanel8, java.awt.BorderLayout.CENTER);
+        panelMenuCompetition.add(panelCompetitonNew, java.awt.BorderLayout.CENTER);
 
-        jPanel9.setBackground(new java.awt.Color(25, 29, 74));
-        jPanel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelCompetitonSearch.setBackground(new java.awt.Color(25, 29, 74));
+        panelCompetitonSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelCompetitonSearch.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelClimbersText5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         labelClimbersText5.setForeground(new java.awt.Color(255, 255, 255));
         labelClimbersText5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelClimbersText5.setText("Search");
-        jPanel9.add(labelClimbersText5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 120, 50));
+        panelCompetitonSearch.add(labelClimbersText5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 120, 50));
 
         labelClimbersIcon5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel9.add(labelClimbersIcon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 50, 50));
+        panelCompetitonSearch.add(labelClimbersIcon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 50, 50));
 
-        panelMenuCompetition.add(jPanel9, java.awt.BorderLayout.PAGE_END);
+        panelMenuCompetition.add(panelCompetitonSearch, java.awt.BorderLayout.PAGE_END);
 
         panelMenuHide.add(panelMenuCompetition, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 220, -1));
 
@@ -287,6 +293,8 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().add(panelMenu, java.awt.BorderLayout.LINE_START);
 
         panelMainContent.setBackground(new java.awt.Color(73, 128, 242));
+        panelMainContent.setMaximumSize(new java.awt.Dimension(1000, 600));
+        panelMainContent.setPreferredSize(null);
         panelMainContent.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelMainContent, java.awt.BorderLayout.CENTER);
 
@@ -326,9 +334,6 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel labelBurger;
     private javax.swing.JLabel labelClimbersIcon;
     private javax.swing.JLabel labelClimbersIcon1;
@@ -346,12 +351,16 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelMaximize;
     private javax.swing.JLabel labelMinimize;
     private javax.swing.JLabel labelSettings;
+    private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelButtonClose;
     private javax.swing.JPanel panelButtonMax;
     private javax.swing.JPanel panelButtonMin;
     private javax.swing.JPanel panelClimbersMain;
     private javax.swing.JPanel panelClimbersNew;
     private javax.swing.JPanel panelClimbersSearch;
+    private javax.swing.JPanel panelCompetitonMain;
+    private javax.swing.JPanel panelCompetitonNew;
+    private javax.swing.JPanel panelCompetitonSearch;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelIconMinMaxClose;
     private javax.swing.JPanel panelMainContent;
@@ -369,6 +378,23 @@ public class MainForm extends javax.swing.JFrame {
     public void menuSearchClimberAddMouseClicked(Consumer<MouseEvent> handler) {
         FormActionHelper.addMouseClicked(panelClimbersSearch, handler);
     }
+
+    public void menuNewCompetitionAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelCompetitonNew, handler);
+    }
+
+    public void menuSearchCompetitionAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelCompetitonSearch, handler);
+    }
+
+    public void menuPanelClimbersMainAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelClimbersMain, handler);
+    }
+    
+    public void menuPanelCompetitonMainAddMouseClicked(Consumer<MouseEvent> handler) {
+        FormActionHelper.addMouseClicked(panelCompetitonMain, handler);
+    }
+    
     public PanelMainContent getPanelMainContent() {
         return (PanelMainContent) panelMainContent;
     }
@@ -407,9 +433,9 @@ public class MainForm extends javax.swing.JFrame {
         FormStyleHelper.styleButtonComponents(Arrays.asList(panelClimbersMain,
                 panelClimbersNew,
                 panelClimbersSearch,
-                jPanel7,
-                jPanel8,
-                jPanel9
+                panelCompetitonMain,
+                panelCompetitonNew,
+                panelCompetitonSearch
         ),
                 FormStyleHelper.MENU_ENTER_COLOR);
 
@@ -484,6 +510,11 @@ public class MainForm extends javax.swing.JFrame {
 
     }
 
+    public JLabel getLabelTitle() {
+        return labelTitle;
+    }
+
+    
     private void changecolor(JPanel hover, Color rand) {
         hover.setBackground(rand);
     }

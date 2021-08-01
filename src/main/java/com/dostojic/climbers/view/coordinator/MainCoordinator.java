@@ -7,12 +7,16 @@ package com.dostojic.climbers.view.coordinator;
 
 import com.dostojic.climbers.view.controller.ClimberController;
 import com.dostojic.climbers.view.controller.ClimberListController;
+import com.dostojic.climbers.view.controller.CompetitionController;
+import com.dostojic.climbers.view.controller.CompetitionListController;
 import com.dostojic.climbers.view.controller.LoginController;
 import com.dostojic.climbers.view.controller.MainController;
 import com.dostojic.climbers.view.form.FormLogin;
 import com.dostojic.climbers.view.form.MainForm;
 import com.dostojic.climbers.view.form.climber.PanelClimber;
 import com.dostojic.climbers.view.form.climber.PanelListClimbers;
+import com.dostojic.climbers.view.form.competition.PanelCompetition;
+import com.dostojic.climbers.view.form.competition.PanelListCompetitions;
 import com.dostojic.climbers.view.form.util.FormMode;
 import java.awt.Component;
 
@@ -66,5 +70,17 @@ public class MainCoordinator {
     public void openPreviousForm(){
 //        mainController.setMainComponent((String) Session.getInstance().getParam(Constants.ACTIVE_FORM));
         mainController.openPreviousForm();
+    }
+
+    public void openCompetitionForm(FormMode formMode) {
+        CompetitionController competitionController = new CompetitionController(new PanelCompetition());
+        competitionController.openForm(formMode);
+    }
+    
+    
+    public void openListCompetitionsForm() {
+        System.out.println("adding panel list competitions from main coordinator!");
+        CompetitionListController competitionListControler = new CompetitionListController(new PanelListCompetitions());
+        competitionListControler.openForm();
     }
 }

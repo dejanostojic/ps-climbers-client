@@ -5,18 +5,19 @@
  */
 package com.dostojic.climbers.view.controller;
 
-import com.dostojic.climbers.view.model.User;
 import com.dostojic.climbers.view.constant.Constants;
 import com.dostojic.climbers.view.coordinator.MainCoordinator;
 import com.dostojic.climbers.view.coordinator.Session;
 import com.dostojic.climbers.view.form.MainForm;
 import com.dostojic.climbers.view.form.PanelMainContent;
 import com.dostojic.climbers.view.form.util.FormMode;
+import com.dostojic.climbers.view.model.User;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -38,18 +39,38 @@ public class MainController {
     public void openForm() {
         User user = (User) Session.getInstance().getParam(Constants.CURRENT_USER);
         System.out.println("TODO! ADD USER IN STATUS BAR!!!");
+        mainForm.getLabelTitle().setText("Climbing competitions app (" + user.getFirstName() + " " + user.getLastName() + ")");
 //        mainForm.getLblCurrentUser().setText(user.getFirstname() + ", " + user.getLastname());
         mainForm.setVisible(true);
     }
 
     private void addActionListeners() {
         
+        
+        mainForm.menuPanelClimbersMainAddMouseClicked((MouseEvent e) -> {
+            MainCoordinator.getInstance().openListClimberForm();
+        });
+        
         mainForm.menuNewClimberAddMouseClicked((MouseEvent e) -> {
             MainCoordinator.getInstance().openClimberForm(FormMode.FORM_ADD);
         });
+        
         mainForm.menuSearchClimberAddMouseClicked((MouseEvent e) -> {
             MainCoordinator.getInstance().openListClimberForm();
         });
+        
+        mainForm.menuPanelCompetitonMainAddMouseClicked((MouseEvent e) -> {
+            MainCoordinator.getInstance().openListCompetitionsForm();
+        }); 
+        
+        mainForm.menuNewCompetitionAddMouseClicked((MouseEvent e) -> {
+            MainCoordinator.getInstance().openCompetitionForm(FormMode.FORM_ADD);
+        });
+        
+        mainForm.menuSearchCompetitionAddMouseClicked((MouseEvent e) -> {
+            MainCoordinator.getInstance().openListCompetitionsForm();
+        });
+        
     }
 
     public MainForm getMainForm() {
@@ -60,18 +81,22 @@ public class MainController {
         // TODO: maybe allways save in context the new component, so on cancel button
         // or in save , close we can present back the previous component, handle this!!!
         PanelMainContent panelMainContent = mainForm.getPanelMainContent();
+        panelMainContent.removeAll();
+        
+        JScrollPane scrollPanel = new JScrollPane(form);
+        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         forms.put(formName, form);
         formList.add(new HistoryItem(form, formName));
         panelMainContent.removeAll();
         panelMainContent.revalidate(); // added
         panelMainContent.repaint(); // added
-//        panelMainContent.add(form, BorderLayout.CENTER);
-        panelMainContent.add(form);
+        panelMainContent.add(scrollPanel);
         panelMainContent.revalidate();
         panelMainContent.repaint();
         Session.getInstance().addParam(Constants.ACTIVE_FORM, formName);
 //        panelMainContent.repaint(); // added
     }
+
     
     public void setMainComponent(String formName){ 
        Component form = forms.get(formName);
